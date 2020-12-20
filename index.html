@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/style.css">
+    <title>Парадокс Монти Холла</title>
+</head>
+
+<body>
+    <div class="container">
+        <section class="section">
+            <h1 class="section__header">Парадокс Монти Холла</h1>
+            <div class="section__content">
+                <form action="/" class="form">
+                    <select class="form__select" name="" id="">
+                        <option defalut>Количество экспериментов</option>
+                        <option value="5">5</option>
+                        <option value="10">10</option>
+                        <option value="15">50</option>
+                        <option value="100">100</option>
+                    </select>
+                    <button class="btn" id="start">Начать</button>
+                </form>
+                <div class="monty">
+                    
+                    <div class="monty__item monty__item--stay">
+                        <h3 class="monty__item-header">Остаемся</h3>
+                        <div class="cards">
+                            <!-- <div class="cards__row">
+                                <span class="cards__item-couner">1</span>
+                                <span class="cards__item cards__item--first"></span>
+                                <span class="cards__item cards__item--second cards__item--win"></span>
+                                <span class="cards__item cards__item--third"></span>
+                            </div> -->
+                        </div>
+                    </div>
+                    <div class="monty__item monty__item--change">
+                        <h3 class="monty__item-header">Меняем</h3>
+                        <div class="cards">
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <script src="js/script.js"></script>
+</body>
+
+</html>

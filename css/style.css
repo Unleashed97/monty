@@ -1,0 +1,142 @@
+body{
+    padding: 0;
+    font-family: 'Century Gothic', sans-serif;
+    font-size: 10px;
+    color: #000;
+}
+
+/* CONTAINER */
+.container{
+    max-width: 900px;
+    padding: 0 15px;
+    margin: 0 auto;
+}
+
+/* SECTION */
+.section__header{
+    font-size: 30px;
+    text-align: center;
+    margin-bottom: 50px;
+}
+
+/* MONTY */
+.monty{
+    display: flex;
+    justify-content: space-between;
+}
+
+.monty__item{
+    width: 35%;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, .5);
+    padding: 15px 25px 30px;
+}
+
+.monty__item-header{
+    font-size: 20px;
+    text-align: center;
+    margin-bottom: 40px;
+}
+
+/* CARDS */
+.cards{
+    display: flex;
+    flex-direction: column;
+}
+
+.cards__row{
+    display: flex;
+    justify-content: space-between;
+    padding-left: 80px;
+    margin-bottom: 40px;
+    position: relative;
+}
+.cards__item-counter{
+    position: absolute;
+    top: 50%;
+    left: 0;
+    transform: translateY(-50%);
+    background-color: #fff;
+    font-size: 35px;
+    font-weight: 500;
+
+}
+.cards__item{
+    width: 50px;
+    height: 100px;
+    border-radius: 5px;
+    cursor: pointer;
+    background-color: #ccc;
+    position: relative;
+
+    transition: transform .2s linear;
+}
+.cards__item::after{
+    display: block;
+    font-size: 15px;
+    font-weight: 500;
+    position: absolute;
+    bottom: -25px;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.cards__item--first::after{
+    content: '№1';
+}
+.cards__item--second::after{
+    content: '№2';
+}
+.cards__item--third::after{
+    content: '№3';
+}
+
+.cards__item--win{
+    background-color: red;
+}
+
+.cards__item:hover{
+    /* box-shadow: 0 0 5px rgba(0, 0, 0, .5); */
+    transform: scale(1.1);
+}
+
+/* FORM */
+.form{
+    display: flex;
+    margin-bottom: 40px;
+
+}
+
+.form__select{
+    border: 1px solid #e9e9e9;
+    border-radius: 5px;
+    background-color: transparent;
+    padding: 7px 15px;
+    cursor: pointer;
+    transition: background-color .2s linear;
+    margin-right: 20px;
+
+
+}
+.form__select:hover{
+    background-color: #e9e9e9;
+}
+.form__select:focus{
+    background-color: #e9e9e9;
+}
+.btn{
+    text-align: center;
+    margin: 0;
+    border: 1px solid #e9e9e9;
+    border-radius: 5px;
+    font-family: 'Century Gothic', sans-serif;
+    font-size: 15px;
+    background-color: transparent;
+    padding: 7px 15px;
+    transition: background-color .2s linear;
+}
+
+.btn:hover{
+   background-color: #e9e9e9;
+}
+
