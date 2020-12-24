@@ -4,6 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous"/>
     <link rel="stylesheet" href="css/style.css">
     <title>Парадокс Монти Холла</title>
 </head>
@@ -13,21 +14,34 @@
         <section class="section">
             <h1 class="section__header">Парадокс Монти Холла</h1>
             <div class="section__content">
-                <form action="/" class="form">
-                    <select class="form__select" name="" id="">
-                        <option defalut>Количество экспериментов</option>
-                        <option value="5">5</option>
-                        <option value="10">10</option>
-                        <option value="15">50</option>
-                        <option value="100">100</option>
-                    </select>
-                    <button class="btn" id="start">Начать</button>
-                </form>
+                <div class="section__management">
+                    <form action="/" class="form">
+                        <select class="form__select" name="" id="">
+                            <option defalut>Количество экспериментов</option>
+                            <option value="5">5</option>
+                            <option value="10">10</option>
+                            <option value="50">50</option>
+                            <option value="100">100</option>
+                        </select>
+                        <label class="label" for="isAuto">
+                            <input type="checkbox" id='isAuto' class="checkbox">
+                            Автозаполнение
+                        </label>
+                        <button class="btn" id="start">Начать</button>
+                        <button class="btn" id="complete">Готово</button>
+                    </form>
+                    <ul class="example">
+                        <li class="example__item example__item--selected">- выбранная дверь</li>
+                        <li class="example__item example__item--win">- дверь за которой приз</li>
+                        <li class="example__item example__item--changed">- измененный выбор</li>
+                        <li class="example__item example__item--success">- пользователь угадал</li>
+                    </ul>
+                </div>
                 <div class="monty">
                     
                     <div class="monty__item monty__item--stay">
                         <h3 class="monty__item-header">Остаемся</h3>
-                        <div class="cards">
+                        <div class="cards cards--stick">
                             <!-- <div class="cards__row">
                                 <span class="cards__item-couner">1</span>
                                 <span class="cards__item cards__item--first"></span>
@@ -38,8 +52,31 @@
                     </div>
                     <div class="monty__item monty__item--change">
                         <h3 class="monty__item-header">Меняем</h3>
-                        <div class="cards">
+                        <div class="cards cards--change">
 
+                        </div>
+                    </div>
+                </div>
+                
+                
+                <div class="results">
+                    <div class="results__header">Результаты</div>
+                    <div class="results__content">
+                        <div class="results__item results__item--stick">
+                            <h3 class="results__item-header">Остаемся</h3>
+                            <h5 class="results__stat"></h5>
+                            <div class="results__container">
+                                <!-- <div class="result__card">
+                                    <span class="result__card-text"></span>
+                                </div> -->
+                            </div>
+                        </div>
+                        <div class="results__item results__item--change">
+                            <h3 class="results__item-header">Меняем</h3>
+                            <h5 class="results__stat"></h5>
+                            <div class="results__container">
+
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -47,7 +84,13 @@
         </section>
     </div>
 
-    <script src="js/script.js"></script>
+    <div class="scroll">
+        <i class="fas fa-arrow-alt-circle-down"></i>
+    </div>
+
+    <!-- <script src="js/script.js"></script> -->
+    <script src="js/script2.js"></script>
+    <script src="js/scroll.js"></script>
 </body>
 
 </html>
