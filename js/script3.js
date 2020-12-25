@@ -46,18 +46,6 @@ const autoSelectCards = () => {
         checkbox.disabled = "disabled";
 
         const cardsRow = document.querySelectorAll('.cards__row');
-      
-        // cardsRow.forEach(item => {
-        //   let cards = [];
-        //   for (let i = 0; i < item.childNodes.length; i++) {
-        //     if (item.childNodes[i].classList.contains('cards__item')) {
-        //       cards.push(item.childNodes[i]);
-        //     }
-        //   }
-        //   random(cards).classList.add('selected');
-        // //   console.log(cards);
-        // });
-
         // 
         const cards = document.querySelectorAll('.cards');
         // const cardsItem = document.querySelectorAll('.cards__item');
@@ -89,17 +77,7 @@ const autoSelectCards = () => {
 };
 
 const findWin = () => {
-    // const cardsRow = document.querySelectorAll('.cards__row');
     const cards = document.querySelectorAll('.cards');
-    // cardsRow.forEach(item => {
-    //     let cards = [];
-    //     for(let i=0; i< item.childNodes.length; i++){
-    //         if(item.childNodes[i].classList.contains('cards__item')){
-    //             cards.push(item.childNodes[i]);
-    //         }
-    //     }
-    //     random(cards).classList.add('win');
-    // });
 
     // for obj
     for(let i=0; i<data.length; i++){
@@ -113,7 +91,6 @@ const findWin = () => {
     for(let i=0; i<cards.length; i++){
         for(let j=0; j<cards[i].children.length; j++){
             for(let k=0; k< cards[i].children[j].children.length; k++){
-                // console.log(cards[i].children[j].children[k]);
                 if(data[i][j][k].hasOwnProperty('prize')){
                     cards[i].children[j].children[k].classList.add('prize');
                 }
@@ -130,57 +107,6 @@ const showWinner = () => {
 
     completeBtn.addEventListener('click', e => {
         e.preventDefault();
-        // cardsRow.forEach(item => {
-        //     for(let i =0; i < item.childNodes.length; i++){
-        //         if(item.childNodes[i].classList.contains('prize')){
-        //             item.childNodes[i].style.background = 'red';
-        //         }
-        //         if(item.childNodes[i].classList.contains('prize') && 
-        //         item.childNodes[i].classList.contains('selected')){
-        //             item.childNodes[i].style.background = 'green';
-        //         }
-        //     }
-        // });
-
-        // // empty cards
-        // cardsRowChange.forEach(item => {
-        //     for(let i = 0; i < item.childNodes.length; i++){
-        //         if(item.childNodes[i].classList.contains('cards__item') && 
-        //         !item.childNodes[i].classList.contains('prize') &&
-        //         !item.childNodes[i].classList.contains('selected')){
-        //             item.childNodes[i].children[0].innerHTML = 'ПУСТО';
-        //             item.childNodes[i].classList.add('empty');
-        //             break;
-        //         }
-        //     }
-        // });
-
-        // // changed cards
-        // cardsRowChange.forEach(item => {
-        //     for(let i = 0; i < item.childNodes.length; i++){
-        //         if(!item.childNodes[i].classList.contains('empty') && 
-        //         !item.childNodes[i].classList.contains('selected')){
-        //             item.childNodes[i].classList.add('changed');
-        //         }
-        //     }
-        // });
-
-        // // check winner
-        // cardsRowChange.forEach(item => {
-        //     for(let i = 0; i < item.childNodes.length; i++){
-        //         if(item.childNodes[i].classList.contains('selected')){
-        //             item.childNodes[i].classList.remove('selected');
-        //         }
-        //         if(item.childNodes[i].classList.contains('prize')){
-        //             item.childNodes[i].style.background = 'red';
-        //         }
-        //         if(item.childNodes[i].classList.contains('prize') &&
-        //         item.childNodes[i].classList.contains('changed')){
-        //             item.childNodes[i].style.background = 'green';
-        //         }
-        //     }
-        // });
-
         // for obj
         for(let i=0; i<data.length; i++){
             for(let j=0; j< Object.keys(data[i]).length-1; j++){
@@ -199,7 +125,7 @@ const showWinner = () => {
                     if(data[i].className == 'cards--stick'){
                         if(data[i][j][k].hasOwnProperty('select') && 
                         data[i][j][k].hasOwnProperty('prize')){
-                            data[i][j][k].win = 'win';
+                            data[i][j][k].win = true;
                         }
                     }
                     if(data[i].className == 'cards--change'){
@@ -207,12 +133,52 @@ const showWinner = () => {
                         !data[i][j][k].hasOwnProperty('empty')){
                             data[i][j][k].change = 'changed';
                         }
+                        if(data[i][j][k].hasOwnProperty('change') &&
+                        data[i][j][k].hasOwnProperty('prize')){
+                            data[i][j][k].win = true;
+                        }
                     }
                     
                 }
             }
         }
-        console.log(data);
+
+        // for visual
+        for(let i=0; i<cardsBlock.length; i++){
+            for(let j=0; j< cardsBlock[i].children.length; j++){
+                for(let k=0; k< cardsBlock[i].children[j].children.length; k++){
+                    if(cardsBlock[i].classList.contains('cards--stick')){
+                        if(data[i][j][k].hasOwnProperty('prize')){
+                            cardsBlock[i].children[j].children[k].style.background = 'red';
+                        }
+                        if(data[i][j][k].hasOwnProperty('win')){
+                            cardsBlock[i].children[j].children[k].classList.add('win');
+                            cardsBlock[i].children[j].children[k].style.background = 'green';
+                            
+                        }
+
+                    }
+                    if(cardsBlock[i].classList.contains('cards--change')){
+                        if(data[i][j][k].hasOwnProperty('prize')){
+                            cardsBlock[i].children[j].children[k].style.background = 'red';
+                        }
+                        if(data[i][j][k].hasOwnProperty('empty')){
+                            cardsBlock[i].children[j].children[k].children[0].innerHTML = 'ПУСТО';
+                        }
+                        if(data[i][j][k].hasOwnProperty('change')){
+                            cardsBlock[i].children[j].children[k].style.background = 'yellow';
+                        }
+                        if(data[i][j][k].hasOwnProperty('change') &&
+                        data[i][j][k].hasOwnProperty('prize')){
+                            cardsBlock[i].children[j].children[k].classlist = 'win';
+                            cardsBlock[i].children[j].children[k].style.background = 'green';
+                        }
+                    }
+
+                }
+                
+            }
+        }
         showResults();
     });
 }
@@ -236,38 +202,34 @@ const createResultsCard = (counter) =>{
 }
 
 const showResults = () => {
-    const resultStick = document.querySelector('.results__item--stick .results__container');
-    const resultChange = document.querySelector('.results__item--change .results__container');
     const cardsRow = document.querySelectorAll('.cards--stick .cards__row');
     const cardsRowChange = document.querySelectorAll('.cards--change .cards__row');
 
+    const resultsContainer = document.querySelectorAll('.results__container');
+
     let arrResultStick = [];
     let arrResultChange = [];
-    // for(let i=0; i< cardsRow.length; i++){
-    //     for(let j=0; j< cardsRow[i].childNodes.length; j++){
-    //         if(cardsRow[i].childNodes[j].classList.contains('win') &&
-    //         cardsRow[i].childNodes[j].classList.contains('selected')){
-    //             // console.log(resultStick.children[i]);
-    //             resultStick.children[i].classList.add('win');
-    //             arrResultStick.push(1);
-    //         }
-    //     }
-    //     // console.log(cardsRow[i]);
-    // }
+ 
+    // for obj
+    for(let i=0; i<data.length; i++){
+        for(let j=0; j< Object.keys(data[i]).length-1; j++){
+            for(let k=0; k< Object.keys(data[i][j]).length-1; k++){
+                if(data[i].className == 'cards--stick'){
+                    if(data[i][j][k].hasOwnProperty('win')){
+                        resultsContainer[i].children[j].classList.add('win');
+                        arrResultStick.push(1);
+                    }
+                }
+                if(data[i].className == 'cards--change'){
+                    if(data[i][j][k].hasOwnProperty('win')){
+                        resultsContainer[i].children[j].classList.add('win');
+                        arrResultChange.push(1);
+                    }
+                }
+            }
+        }
+    }
 
-    // // for changed
-    // for(let i=0; i<cardsRowChange.length; i++){
-    //     for(let j=0; j<cardsRowChange[i].childNodes.length; j++){
-    //         if(cardsRowChange[i].children[j].classList.contains('win') &&
-    //         cardsRowChange[i].children[j].classList.contains('changed')){
-    //             // console.log(cardsRowChange[i].children[j]);
-    //             resultChange.children[i].classList.add('win');
-    //             arrResultChange.push(1);
-
-    //         }
-    //     }
-    //     // console.log(resultChange.children[i]);
-    // }
 
     // result stat
     const resultStatStick = document.querySelector('.results__item--stick .results__stat');
@@ -310,7 +272,7 @@ const start = () => {
             }
         })
 
-        if (numberOfExp <= 100) {
+        if (numberOfExp <= 15) {
             for (let i = 1; i <= numberOfExp; i++) {
                 createCards(i);
                 createResultsCard(i);
@@ -323,7 +285,12 @@ const start = () => {
             }
         }
         else{
-            autoSelectCards();
+            if(numberOfExp <=100){
+                for (let i = 1; i <= numberOfExp; i++) {
+                    createResultsCard(i);
+                }
+                autoSelectCards();
+            }
         }
     // show();
     // autoSelectCards();
